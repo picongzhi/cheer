@@ -19,6 +19,10 @@
 - vue-cli3 脚手架工具
 - 使用 VSCode 开发
 
+### 版本管理
+ - npm install -g commitizen
+ - 使用git cz提交
+
 ## 运行
 
 ### 后端
