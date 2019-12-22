@@ -1,0 +1,2 @@
+INSERT INTO `user` (`id`, `username`, `password`, `email`) VALUES (1, 'user1', '123456', 'user1@gmail.com');
+INSERT INTO `user` (`id`, `username`, `password`, `email`) VALUES (2, 'user2', '123456', 'user2@gmail.com');
