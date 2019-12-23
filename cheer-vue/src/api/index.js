@@ -1,9 +1,9 @@
-import axios from "axios"
-import router from "../router"
+import axios from 'axios'
+import router from '../router'
 import {
   Message,
   Loading
-} from "element-ui"
+} from 'element-ui'
 
 const service = axios.create({
   timeout: 60000,
