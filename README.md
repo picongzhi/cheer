@@ -22,6 +22,10 @@
 ### 版本管理
  - npm install -g commitizen
  - 使用git cz提交
+  
+### 依赖存储
+ - MySQL 
+ - Redis 安装: docker run -d -p 6379:6379 redis redis-server --appendonly yes
 
 ## 运行
 
