@@ -1,7 +1,8 @@
 package com.pcz.cheer.mapper;
 
 import com.pcz.cheer.ApplicationTest;
-import com.pcz.cheer.entity.User;
+import com.pcz.cheer.model.Role;
+import com.pcz.cheer.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

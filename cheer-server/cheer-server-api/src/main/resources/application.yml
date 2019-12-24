@@ -20,6 +20,16 @@ spring:
       pool-name: SpringBootCheerHikariCP
       max-lifetime: 60000
       connection-timeout: 30000
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 10000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
 logging:
   level:
     com.pcz.cheer: debug
@@ -28,7 +38,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mappers/*.xml
-  type-aliases-package: com.pcz.cheer.entity
+  type-aliases-package: com.pcz.cheer.model
 mapper:
   mappers:
     - tk.mybatis.mapper.common.Mapper
@@ -44,3 +54,16 @@ pagehelper:
   reasonable: true
   params: count=countSql
 debug: true
+jwt:
+  config:
+    key: cheer
+    ttl: 600000
+    remember: 604800000
+custom:
+  config:
+    ignores:
+      post:
+        - "/user/login"
+        - "/user/logout"
+      pattern:
+        - "/test/*"

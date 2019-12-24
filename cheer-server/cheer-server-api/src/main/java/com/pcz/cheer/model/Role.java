@@ -1,25 +1,18 @@
-package com.pcz.cheer.entity;
+package com.pcz.cheer.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author picongzhi
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@Table(name = "user")
-public class User implements Serializable {
+@Table(name = "role")
+public class Role {
     /**
      * 主键
      */
@@ -28,19 +21,14 @@ public class User implements Serializable {
     private Long id;
 
     /**
-     * 用户名
+     * 角色名
      */
-    private String username;
+    private String name;
 
     /**
-     * 密码
+     * 描述
      */
-    private String password;
-
-    /**
-     * 邮箱
-     */
-    private String email;
+    private String description;
 
     /**
      * 创建时间

@@ -27,6 +27,7 @@
         <hutool.version>5.0.0</hutool.version>
         <guava.version>28.1-jre</guava.version>
         <swagger.version>2.9.2</swagger.version>
+        <jjwt.veersion>0.9.1</jjwt.veersion>
     </properties>
 
     <dependencyManagement>
@@ -87,6 +88,12 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.veersion}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

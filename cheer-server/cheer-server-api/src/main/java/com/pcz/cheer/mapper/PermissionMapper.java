@@ -1,6 +1,6 @@
 package com.pcz.cheer.mapper;
 
-import com.pcz.cheer.model.User;
+import com.pcz.cheer.model.Permission;
 import org.springframework.stereotype.Component;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;
@@ -9,5 +9,5 @@ import tk.mybatis.mapper.common.MySqlMapper;
  * @author picongzhi
  */
 @Component
-public interface UserMapper extends Mapper<User>, MySqlMapper<User> {
+public interface PermissionMapper extends Mapper<Permission>, MySqlMapper<Permission> {
 }

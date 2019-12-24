@@ -1,6 +1,7 @@
 package com.pcz.cheer.service;
 
-import com.pcz.cheer.entity.User;
+import com.pcz.cheer.model.Role;
+import com.pcz.cheer.model.User;
 import com.pcz.cheer.vo.UserLoginVo;
 import com.pcz.cheer.vo.UserRegisterVo;
 
@@ -32,4 +33,12 @@ public interface UserService {
      * @return User
      */
     User login(UserLoginVo userLoginVo);
+
+    /**
+     * 根据用户id获取用户角色
+     *
+     * @param userId 用户id
+     * @return List<Role>
+     */
+    List<Role> getRolesByUserId(Long userId);
 }
