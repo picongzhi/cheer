@@ -19,6 +19,14 @@ public interface UserService {
     List<User> getUserList();
 
     /**
+     * 根据id获取用户
+     *
+     * @param id id
+     * @return User
+     */
+    User getUserById(Long id);
+
+    /**
      * 用户注册
      *
      * @param userRegisterVo 用户注册信息

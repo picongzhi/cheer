@@ -43,6 +43,12 @@ public class UserController {
         return userService.getUserList();
     }
 
+    @GetMapping("/{id:\\d}")
+    @ApiOperation(value = "根据id获取用户信息", notes = "根据id获取用户信息")
+    public ApiResponse getUser(@PathVariable Long id) {
+        return ApiResponse.ofSuccess(userService.getUserById(id));
+    }
+
     @PostMapping("/register")
     @ApiOperation(value = "注册用户", notes = "注册用户")
     public boolean register(@RequestBody UserRegisterVo userRegisterVo) {

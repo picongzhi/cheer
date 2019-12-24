@@ -40,6 +40,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private RoleService roleService;
 
     @Override
+    public User getUserById(Long id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public List<User> getUserList() {
         return userMapper.selectAll();
     }
