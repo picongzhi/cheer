@@ -36,11 +36,14 @@ service.interceptors.response.use(response => {
     loading.close()
   }
 
-  const responseCode = response.status
-  if (responseCode === 200) {
-    return Promise.resolve(response)
+  // const responseCode = response.status
+  const res = response.data
+  const code = res.code
+  if (code === 200) {
+    return Promise.resolve(res)
   } else {
-    return Promise.reject(response)
+    console.log(res)
+    return Promise.reject(res)
   }
 }, error => {
   if (loading) {

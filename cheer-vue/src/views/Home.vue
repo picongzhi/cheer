@@ -11,7 +11,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import api from '@/api'
+import { getUserInfo } from '@/api/user'
 
 export default {
   name: 'home',
@@ -19,7 +19,7 @@ export default {
     HelloWorld
   },
   mounted () {
-    api.get('/user')
+    getUserInfo(1)
   }
 }
 </script>

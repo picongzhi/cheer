@@ -16,7 +16,8 @@ module.exports = {
       // 参数不检查
       "args": "none"
     }],
-    "space-in-parens": "off"
+    "space-in-parens": "off",
+    "space-before-function-paren": 0
   },
   parserOptions: {
     parser: 'babel-eslint'
