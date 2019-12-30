@@ -5,7 +5,11 @@ export default [{
   name: 'home',
   component: Home
 }, {
-  path: '/about',
-  name: 'about',
-  component: () => import( /* webpackChunkName: "about" */ '@/views/About.vue')
+  path: '/login',
+  name: 'login',
+  component: () => import( /* webpackChunkName: "login" */ '@/views/Login.vue')
+}, {
+  path: '/register',
+  name: 'register',
+  component: () => import( /* webpackChunkName: "register" */ '@/views/Register.vue')
 }]
