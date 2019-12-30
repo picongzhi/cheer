@@ -85,35 +85,50 @@ export default {
 </script>
 
 <style lang='stylus' scoped>
-.login
-  height 100%
-  display flex
-  justify-content center
-  align-items center
-  background-color #FFFFFF
-  .login-form
-    width 450px
-    margin 10px
-    .title-container
-      .title
-        font-size 26px
-        text-align center
-        color #5F6368
-    .username .password
-      margin: 10px
-    .btn-container
-      display flex
-      justify-content center
-      align-items center
-      .btn
-        width 100px
-        margin  0 20px
+.login {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+
+  .login-form {
+    width: 450px;
+    margin: 10px;
+
+    .title-container {
+      .title {
+        font-size: 26px;
+        text-align: center;
+        color: #5F6368;
+      }
+    }
+
+    .username .password {
+      margin: 10px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .btn {
+        width: 100px;
+        margin: 0 20px;
+      }
+    }
+  }
+}
 </style>
 
 <style lang="stylus">
-.el-form-item__label
-  color: #5F6368
-.el-input__inner
-  color #5F6368
-  background-color #FFF
+.el-form-item__label {
+  color: #5F6368;
+}
+
+.el-input__inner {
+  color: #5F6368;
+  background-color: #FFF;
+}
 </style>
