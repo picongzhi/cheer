@@ -90,7 +90,7 @@ export default {
   display flex
   justify-content center
   align-items center
-  background-color #2D394B
+  background-color #FFFFFF
   .login-form
     width 450px
     margin 10px
@@ -98,7 +98,7 @@ export default {
       .title
         font-size 26px
         text-align center
-        color white
+        color #5F6368
     .username .password
       margin: 10px
     .btn-container
@@ -112,8 +112,8 @@ export default {
 
 <style lang="stylus">
 .el-form-item__label
-  color: white
+  color: #5F6368
 .el-input__inner
-  color white
-  background-color #283343
+  color #5F6368
+  background-color #FFF
 </style>
