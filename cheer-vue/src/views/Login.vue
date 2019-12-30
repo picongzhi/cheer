@@ -121,14 +121,3 @@ export default {
   }
 }
 </style>
-
-<style lang="stylus">
-.el-form-item__label {
-  color: #5F6368;
-}
-
-.el-input__inner {
-  color: #5F6368;
-  background-color: #FFF;
-}
-</style>
