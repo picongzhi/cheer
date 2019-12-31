@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getUserInfo(id) {
+export function getUserInfo() {
   return request({
-    url: '/user/' + id,
+    url: '/user',
     method: 'get'
   })
 }

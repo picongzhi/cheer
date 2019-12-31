@@ -1,12 +1,15 @@
 package com.pcz.cheer.controller;
 
 import com.pcz.cheer.common.ApiResponse;
+import com.pcz.cheer.common.Status;
+import com.pcz.cheer.exception.SecurityException;
 import com.pcz.cheer.model.User;
 import com.pcz.cheer.service.UserService;
 import com.pcz.cheer.util.JwtUtil;
 import com.pcz.cheer.vo.JwtResponse;
 import com.pcz.cheer.vo.LoginRequest;
 import com.pcz.cheer.vo.RegisterRequest;
+import com.pcz.cheer.vo.UserPrincipal;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -15,6 +18,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -37,16 +41,15 @@ public class UserController {
     private JwtUtil jwtUtil;
 
     @GetMapping
-    @ApiOperation(value = "获取用户列表", notes = "获取用户列表")
-    @ApiImplicitParams({})
-    public List<User> listUsers() {
-        return userService.getUserList();
-    }
+    @ApiOperation(value = "根据token获取用户信息", notes = "根据token获取用户信息")
+    public ApiResponse getUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            UserPrincipal userPrincipal = (UserPrincipal) principal;
+            return ApiResponse.ofSuccess(userService.getUserById(userPrincipal.getId()));
+        }
 
-    @GetMapping("/{id:\\d}")
-    @ApiOperation(value = "根据id获取用户信息", notes = "根据id获取用户信息")
-    public ApiResponse getUser(@PathVariable Long id) {
-        return ApiResponse.ofSuccess(userService.getUserById(id));
+        return ApiResponse.ofException(new SecurityException(Status.UNAUTHORIZED));
     }
 
     @PostMapping("/register")

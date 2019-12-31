@@ -96,7 +96,6 @@ export default {
           userLogin(this.loginForm)
             .then(res => {
               const { data } = res
-              console.log(data)
               localStorage.setItem('token', data['token'])
 
               this.$router.push('/')
