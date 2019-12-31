@@ -22,9 +22,16 @@ public interface UserService {
      * 根据id获取用户
      *
      * @param id id
-     * @return User
+     * @return UserInfo
      */
     UserInfo getUserById(Long id);
+
+    /**
+     * 从token获取用户信息
+     *
+     * @return UserInfo
+     */
+    UserInfo getUserFromSecurityContext();
 
     /**
      * 用户注册

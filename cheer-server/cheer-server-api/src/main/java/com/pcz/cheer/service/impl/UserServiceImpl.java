@@ -1,6 +1,7 @@
 package com.pcz.cheer.service.impl;
 
 import cn.hutool.core.date.DateTime;
+import com.pcz.cheer.common.ApiResponse;
 import com.pcz.cheer.mapper.RoleMapper;
 import com.pcz.cheer.mapper.UserRoleMapper;
 import com.pcz.cheer.model.Permission;
@@ -14,6 +15,7 @@ import com.pcz.cheer.vo.UserInfo;
 import com.pcz.cheer.vo.UserPrincipal;
 import com.pcz.cheer.vo.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -52,6 +54,22 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userInfo.setEmail(user.getEmail());
 
         return userInfo;
+    }
+
+    @Override
+    public UserInfo getUserFromSecurityContext() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            UserPrincipal userPrincipal = (UserPrincipal) principal;
+            UserInfo userInfo = new UserInfo();
+            userInfo.setId(userPrincipal.getId());
+            userInfo.setUsername(userPrincipal.getUsername());
+            userInfo.setEmail(userPrincipal.getEmail());
+
+            return userInfo;
+        }
+
+        return null;
     }
 
     @Override

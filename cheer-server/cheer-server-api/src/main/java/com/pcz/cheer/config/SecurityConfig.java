@@ -58,9 +58,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .anyRequest().access("@rbacAuthorityService.hasPermission(request, authentication)")
-                .and().logout().disable()
+                .and()
+                .logout().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 
         // 添加自定义jwt过滤器
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -6,10 +6,7 @@ import com.pcz.cheer.exception.SecurityException;
 import com.pcz.cheer.model.User;
 import com.pcz.cheer.service.UserService;
 import com.pcz.cheer.util.JwtUtil;
-import com.pcz.cheer.vo.JwtResponse;
-import com.pcz.cheer.vo.LoginRequest;
-import com.pcz.cheer.vo.RegisterRequest;
-import com.pcz.cheer.vo.UserPrincipal;
+import com.pcz.cheer.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -43,13 +40,12 @@ public class UserController {
     @GetMapping
     @ApiOperation(value = "根据token获取用户信息", notes = "根据token获取用户信息")
     public ApiResponse getUser() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            UserPrincipal userPrincipal = (UserPrincipal) principal;
-            return ApiResponse.ofSuccess(userService.getUserById(userPrincipal.getId()));
+        UserInfo userInfo = userService.getUserFromSecurityContext();
+        if (userInfo == null) {
+            throw new SecurityException(Status.UNAUTHORIZED);
         }
 
-        return ApiResponse.ofException(new SecurityException(Status.UNAUTHORIZED));
+        return ApiResponse.ofSuccess(userInfo);
     }
 
     @PostMapping("/register")
