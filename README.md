@@ -30,7 +30,7 @@
 ## 运行
 
 ### 后端
-
+确保mysql和redis启动
 使用 IDEA 打开 cheer-server 安装好依赖之后找到 cheer/cheer-server/cheer-server-api/src/main/java/com/pcz/cheer 下面的 Application.java，运行即可
 
 ### 前端
