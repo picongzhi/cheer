@@ -37,9 +37,8 @@ public interface UserService {
      * 用户注册
      *
      * @param registerRequest 用户注册信息
-     * @return 是否成功
      */
-    boolean register(RegisterRequest registerRequest);
+    void register(RegisterRequest registerRequest);
 
     /**
      * 根据用户id获取用户角色

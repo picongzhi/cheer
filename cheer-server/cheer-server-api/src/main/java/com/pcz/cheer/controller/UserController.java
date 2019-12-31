@@ -50,8 +50,9 @@ public class UserController {
 
     @PostMapping("/register")
     @ApiOperation(value = "注册用户", notes = "注册用户")
-    public boolean register(@RequestBody RegisterRequest registerRequest) {
-        return userService.register(registerRequest);
+    public ApiResponse register(@RequestBody RegisterRequest registerRequest) {
+        userService.register(registerRequest);
+        return ApiResponse.ofSuccess("注册成功");
     }
 
     @PostMapping("/login")

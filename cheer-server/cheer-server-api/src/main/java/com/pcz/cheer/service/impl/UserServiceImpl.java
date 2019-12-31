@@ -15,10 +15,13 @@ import com.pcz.cheer.vo.UserInfo;
 import com.pcz.cheer.vo.UserPrincipal;
 import com.pcz.cheer.vo.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -40,6 +43,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public UserInfo getUserById(Long id) {
@@ -78,15 +84,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public boolean register(RegisterRequest registerRequest) {
+    public void register(RegisterRequest registerRequest) {
         User user = User.builder()
                 .username(registerRequest.getUsername())
-                .password(registerRequest.getPassword())
+                .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .email(registerRequest.getEmail())
+                .status(1)
                 .createTime(new DateTime())
                 .updateTime(new DateTime())
                 .build();
-        return userMapper.insert(user) == 1;
+        userMapper.insert(user);
+
+        Example roleExample = new Example(Role.class);
+        roleExample.createCriteria().andEqualTo("name", "USER");
+        Role role = roleMapper.selectOneByExample(roleExample);
+        UserRole userRole = UserRole.builder()
+                .userId(user.getId())
+                .roleId(role.getId())
+                .build();
+        userRoleMapper.insert(userRole);
     }
 
     @Override
