@@ -22,6 +22,7 @@ export default {
   },
   mounted () {
     getUserInfo().then(res => {
+      console.log(res)
       Message.success('hello, ' + res.data.username)
     }).catch(err => {
       Message.error(err.message)

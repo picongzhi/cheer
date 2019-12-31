@@ -10,6 +10,7 @@ import com.pcz.cheer.mapper.UserMapper;
 import com.pcz.cheer.model.UserRole;
 import com.pcz.cheer.service.RoleService;
 import com.pcz.cheer.service.UserService;
+import com.pcz.cheer.vo.UserInfo;
 import com.pcz.cheer.vo.UserPrincipal;
 import com.pcz.cheer.vo.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private RoleService roleService;
 
     @Override
-    public User getUserById(Long id) {
-        return userMapper.selectByPrimaryKey(id);
+    public UserInfo getUserById(Long id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        if (user == null) {
+            return null;
+        }
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(user.getId());
+        userInfo.setUsername(user.getUsername());
+        userInfo.setEmail(user.getEmail());
+
+        return userInfo;
     }
 
     @Override
