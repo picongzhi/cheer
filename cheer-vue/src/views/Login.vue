@@ -4,7 +4,8 @@
       class="login-form"
       ref="loginForm"
       :model="loginForm"
-      label-width="100px"
+      :rules="rules"
+      label="top"
     >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
@@ -64,6 +65,11 @@
 </template>
 
 <script>
+import { userLogin } from '@/api/user'
+import {
+  Message
+} from 'element-ui'
+
 export default {
   name: 'Login',
   data () {
@@ -72,13 +78,34 @@ export default {
         username: '',
         password: '',
         rememberMe: false
+      },
+      rules: {
+        username: [
+          { required: true, message: '用户名或邮箱不能为空', trigger: 'blur' },
+          { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '密码不能为空', trigger: 'blur' },
+          { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+        ]
       }
     }
   },
   methods: {
     handleLogin (loginForm) {
-      const form = this.$refs[loginForm]
-      console.log(form)
+      this.$refs[loginForm].validate((valid) => {
+        if (valid) {
+          userLogin(this.loginForm).then(res => {
+            const { data } = res
+            console.log(data)
+            localStorage.setItem('token', data['token'])
+
+            this.$router.push('/')
+          }).catch(err => {
+            Message.error(err)
+          })
+        }
+      })
     }
   }
 }
@@ -93,7 +120,7 @@ export default {
   background-color: #FFFFFF;
 
   .login-form {
-    width: 450px;
+    width: 300px;
     margin: 10px;
 
     .title-container {

@@ -2,8 +2,7 @@ package com.pcz.cheer.service;
 
 import com.pcz.cheer.model.Role;
 import com.pcz.cheer.model.User;
-import com.pcz.cheer.vo.UserLoginVo;
-import com.pcz.cheer.vo.UserRegisterVo;
+import com.pcz.cheer.vo.RegisterRequest;
 
 import java.util.List;
 
@@ -29,18 +28,10 @@ public interface UserService {
     /**
      * 用户注册
      *
-     * @param userRegisterVo 用户注册信息
+     * @param registerRequest 用户注册信息
      * @return 是否成功
      */
-    boolean register(UserRegisterVo userRegisterVo);
-
-    /**
-     * 用户登录
-     *
-     * @param userLoginVo 用户登录信息
-     * @return User
-     */
-    User login(UserLoginVo userLoginVo);
+    boolean register(RegisterRequest registerRequest);
 
     /**
      * 根据用户id获取用户角色

@@ -63,7 +63,11 @@ custom:
   config:
     ignores:
       post:
+        - "/user/register"
         - "/user/login"
         - "/user/logout"
       pattern:
-        - "/test/*"
+        - "/swagger-ui.html"
+        - "/webjars/**"
+        - "/v2/**"
+        - "/swagger-resources/**"

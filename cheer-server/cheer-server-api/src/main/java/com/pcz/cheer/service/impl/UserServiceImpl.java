@@ -10,9 +10,8 @@ import com.pcz.cheer.mapper.UserMapper;
 import com.pcz.cheer.model.UserRole;
 import com.pcz.cheer.service.RoleService;
 import com.pcz.cheer.service.UserService;
-import com.pcz.cheer.vo.UserLoginVo;
 import com.pcz.cheer.vo.UserPrincipal;
-import com.pcz.cheer.vo.UserRegisterVo;
+import com.pcz.cheer.vo.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -50,20 +49,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public boolean register(UserRegisterVo userRegisterVo) {
+    public boolean register(RegisterRequest registerRequest) {
         User user = User.builder()
-                .username(userRegisterVo.getUsername())
-                .password(userRegisterVo.getPassword())
-                .email(userRegisterVo.getEmail())
+                .username(registerRequest.getUsername())
+                .password(registerRequest.getPassword())
+                .email(registerRequest.getEmail())
                 .createTime(new DateTime())
                 .updateTime(new DateTime())
                 .build();
         return userMapper.insert(user) == 1;
-    }
-
-    @Override
-    public User login(UserLoginVo userLoginVo) {
-        return null;
     }
 
     @Override

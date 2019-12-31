@@ -6,3 +6,11 @@ export function getUserInfo(id) {
     method: 'get'
   })
 }
+
+export function userLogin(data) {
+  return request({
+    url: '/user/login',
+    method: 'post',
+    data: data
+  })
+}

@@ -6,14 +6,19 @@ import lombok.Data;
  * @author picongzhi
  */
 @Data
-public class UserLoginVo {
+public class RegisterRequest {
     /**
-     * 邮箱
+     * 用户名
      */
-    private String email;
+    private String username;
 
     /**
      * 密码
      */
     private String password;
+
+    /**
+     * 邮箱
+     */
+    private String email;
 }

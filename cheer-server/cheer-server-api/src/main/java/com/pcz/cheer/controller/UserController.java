@@ -6,7 +6,7 @@ import com.pcz.cheer.service.UserService;
 import com.pcz.cheer.util.JwtUtil;
 import com.pcz.cheer.vo.JwtResponse;
 import com.pcz.cheer.vo.LoginRequest;
-import com.pcz.cheer.vo.UserRegisterVo;
+import com.pcz.cheer.vo.RegisterRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -51,8 +51,8 @@ public class UserController {
 
     @PostMapping("/register")
     @ApiOperation(value = "注册用户", notes = "注册用户")
-    public boolean register(@RequestBody UserRegisterVo userRegisterVo) {
-        return userService.register(userRegisterVo);
+    public boolean register(@RequestBody RegisterRequest registerRequest) {
+        return userService.register(registerRequest);
     }
 
     @PostMapping("/login")
