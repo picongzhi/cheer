@@ -1,9 +1,6 @@
 <template>
   <div class="home">
-    <markdown-editor
-      v-model="content"
-      height="300px"
-    ></markdown-editor>
+    <markdown-editor v-model="content" height="300px"></markdown-editor>
   </div>
 </template>
 
