@@ -14,3 +14,11 @@ export function userLogin(data) {
     data: data
   })
 }
+
+export function userRegister(data) {
+  return request({
+    url: '/user/register',
+    method: 'post',
+    data: data
+  })
+}
