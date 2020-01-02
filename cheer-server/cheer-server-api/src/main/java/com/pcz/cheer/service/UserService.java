@@ -3,7 +3,7 @@ package com.pcz.cheer.service;
 import com.pcz.cheer.model.Role;
 import com.pcz.cheer.model.User;
 import com.pcz.cheer.vo.RegisterRequest;
-import com.pcz.cheer.vo.UserInfo;
+import com.pcz.cheer.vo.UserResult;
 
 import java.util.List;
 
@@ -22,16 +22,16 @@ public interface UserService {
      * 根据id获取用户
      *
      * @param id id
-     * @return UserInfo
+     * @return UserResult
      */
-    UserInfo getUserById(Long id);
+    UserResult getUserById(Long id);
 
     /**
      * 从token获取用户信息
      *
-     * @return UserInfo
+     * @return UserResult
      */
-    UserInfo getUserFromSecurityContext();
+    UserResult getUserFromSecurityContext();
 
     /**
      * 用户注册

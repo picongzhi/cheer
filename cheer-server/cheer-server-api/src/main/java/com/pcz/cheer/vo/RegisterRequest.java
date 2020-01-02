@@ -22,6 +22,12 @@ public class RegisterRequest {
     private String password;
 
     /**
+     * 确认密码
+     */
+    @NotBlank(message = "确认密码不能为空")
+    private String checkPassword;
+
+    /**
      * 邮箱
      */
     @NotBlank(message = "邮箱不能为空")

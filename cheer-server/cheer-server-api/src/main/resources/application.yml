@@ -51,13 +51,13 @@ mapper:
 pagehelper:
   auto-dialect: true
   helper-dialect: mysql
-  reasonable: true
+  #  reasonable: true
   params: count=countSql
 debug: true
 jwt:
   config:
     key: cheer
-    ttl: 600000
+    ttl: 3600000
     remember: 604800000
 custom:
   config:

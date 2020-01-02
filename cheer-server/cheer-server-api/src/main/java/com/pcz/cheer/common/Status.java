@@ -85,7 +85,12 @@ public enum Status implements IStatus {
     /**
      * 无法手动踢出自己，请尝试退出登录操作
      */
-    KICK_OUT_SELF(5004, "无法手动踢出自己，请尝试退出登录操作");
+    KICK_OUT_SELF(5004, "无法手动踢出自己，请尝试退出登录操作"),
+
+    /**
+     * 两次输入的密码不同
+     */
+    PASSWORD_NOT_MATCH(5005, "两次输入的密码不同");
 
     /**
      * 状态码

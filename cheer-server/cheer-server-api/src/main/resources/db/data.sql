@@ -14,3 +14,12 @@ INSERT INTO `permission` (`id`, `name`, `url`) VALUES (2, '普通用户权限', 
 
 INSERT INTO `role_permission` (`role_id`, `permission_id`) VALUES (1, 1);
 INSERT INTO `role_permission` (`role_id`, `permission_id`) VALUES (2, 2);
+
+INSERT INTO `category` (`name`, `description`, `user_id`) VALUES ('测试分类1', '测试分类1', 1);
+INSERT INTO `category` (`name`, `description`, `user_id`) VALUES ('测试分类2', '测试分类2', 1);
+
+INSERT INTO `blog` (`title`, `user_id`, `category_id`) VALUES ('测试博客', 1, 1);
+INSERT INTO `blog` (`title`, `user_id`, `category_id`) VALUES ('测试博客', 1, 1);
+INSERT INTO `blog` (`title`, `user_id`, `category_id`) VALUES ('测试博客', 1, 2);
+INSERT INTO `blog` (`title`, `is_public`, `user_id`, `category_id`) VALUES ('测试博客', 0, 1, 1);
+INSERT INTO `blog` (`title`, `is_public`, `user_id`, `category_id`) VALUES ('测试博客', 0, 1, 1);

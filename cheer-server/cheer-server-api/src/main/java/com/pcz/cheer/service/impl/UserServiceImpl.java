@@ -1,7 +1,9 @@
 package com.pcz.cheer.service.impl;
 
 import cn.hutool.core.date.DateTime;
-import com.pcz.cheer.common.ApiResponse;
+import cn.hutool.core.util.StrUtil;
+import com.pcz.cheer.common.Status;
+import com.pcz.cheer.exception.RegisterException;
 import com.pcz.cheer.mapper.RoleMapper;
 import com.pcz.cheer.mapper.UserRoleMapper;
 import com.pcz.cheer.model.Permission;
@@ -11,17 +13,15 @@ import com.pcz.cheer.mapper.UserMapper;
 import com.pcz.cheer.model.UserRole;
 import com.pcz.cheer.service.RoleService;
 import com.pcz.cheer.service.UserService;
-import com.pcz.cheer.vo.UserInfo;
+import com.pcz.cheer.util.SecurityUtil;
+import com.pcz.cheer.vo.UserResult;
 import com.pcz.cheer.vo.UserPrincipal;
 import com.pcz.cheer.vo.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -48,34 +48,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public UserInfo getUserById(Long id) {
+    public UserResult getUserById(Long id) {
         User user = userMapper.selectByPrimaryKey(id);
         if (user == null) {
             return null;
         }
 
-        UserInfo userInfo = new UserInfo();
-        userInfo.setId(user.getId());
-        userInfo.setUsername(user.getUsername());
-        userInfo.setEmail(user.getEmail());
-
-        return userInfo;
+        return new UserResult(user.getId(), user.getUsername(), user.getEmail());
     }
 
     @Override
-    public UserInfo getUserFromSecurityContext() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            UserPrincipal userPrincipal = (UserPrincipal) principal;
-            UserInfo userInfo = new UserInfo();
-            userInfo.setId(userPrincipal.getId());
-            userInfo.setUsername(userPrincipal.getUsername());
-            userInfo.setEmail(userPrincipal.getEmail());
-
-            return userInfo;
+    public UserResult getUserFromSecurityContext() {
+        UserPrincipal userPrincipal = SecurityUtil.getCurrentUser();
+        if (userPrincipal == null) {
+            return null;
         }
 
-        return null;
+        return new UserResult(userPrincipal.getId(), userPrincipal.getUsername(), userPrincipal.getEmail());
     }
 
     @Override
@@ -85,6 +74,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void register(RegisterRequest registerRequest) {
+        if (StrUtil.compare(registerRequest.getPassword(), registerRequest.getCheckPassword(), false) != 0) {
+            throw new RegisterException(Status.PASSWORD_NOT_MATCH);
+        }
+
         User user = User.builder()
                 .username(registerRequest.getUsername())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))

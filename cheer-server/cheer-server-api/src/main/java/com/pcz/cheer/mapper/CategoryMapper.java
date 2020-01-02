@@ -1,11 +1,11 @@
 package com.pcz.cheer.mapper;
 
-import com.pcz.cheer.model.User;
+import com.pcz.cheer.model.Category;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;
 
 /**
  * @author picongzhi
  */
-public interface UserMapper extends Mapper<User>, MySqlMapper<User> {
+public interface CategoryMapper extends Mapper<Category>, MySqlMapper<Category> {
 }
