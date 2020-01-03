@@ -16,7 +16,7 @@ public interface UserService {
      *
      * @return List<User>
      */
-    List<User> getUserList();
+    List<User> getUsers();
 
     /**
      * 根据id获取用户
@@ -37,8 +37,9 @@ public interface UserService {
      * 用户注册
      *
      * @param registerRequest 用户注册信息
+     * @return User
      */
-    void register(RegisterRequest registerRequest);
+    User register(RegisterRequest registerRequest);
 
     /**
      * 根据用户id获取用户角色

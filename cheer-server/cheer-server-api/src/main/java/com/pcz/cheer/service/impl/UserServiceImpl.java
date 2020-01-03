@@ -68,12 +68,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<User> getUserList() {
+    public List<User> getUsers() {
         return userMapper.selectAll();
     }
 
     @Override
-    public void register(RegisterRequest registerRequest) {
+    public User register(RegisterRequest registerRequest) {
         if (StrUtil.compare(registerRequest.getPassword(), registerRequest.getCheckPassword(), false) != 0) {
             throw new RegisterException(Status.PASSWORD_NOT_MATCH);
         }
@@ -96,6 +96,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .roleId(role.getId())
                 .build();
         userRoleMapper.insert(userRole);
+
+        return user;
     }
 
     @Override
