@@ -28,6 +28,7 @@
         <guava.version>28.1-jre</guava.version>
         <swagger.version>2.9.2</swagger.version>
         <jjwt.veersion>0.9.1</jjwt.veersion>
+        <minio.version>3.0.10</minio.version>
     </properties>
 
     <dependencyManagement>
@@ -94,6 +95,12 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jjwt.veersion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
