@@ -29,17 +29,17 @@ public class MinioConfig {
     private String secretKey;
 
     /**
-     * 头像文件bucket
+     * bucket
      */
-    private String avatarBucket;
+    private String bucket;
 
     @Bean
     public MinioClient minioClient() {
         try {
             MinioClient minioClient = new MinioClient(url, accessKey, secretKey);
-            if (!minioClient.bucketExists(avatarBucket)) {
-                minioClient.makeBucket(avatarBucket);
-                log.info("create avatar bucket");
+            if (!minioClient.bucketExists(bucket)) {
+                minioClient.makeBucket(bucket);
+                log.info("create bucket");
             }
 
             return minioClient;

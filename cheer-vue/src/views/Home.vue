@@ -9,6 +9,19 @@
             v-model="content"
             height="300px"
           ></markdown-editor> -->
+          <el-upload
+            :action="actionUrl"
+            :headers="headers"
+            drag
+            multipart
+          >
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+            <div
+              class="el-upload__tip"
+              slot="tip"
+            >只能上传jpg/png文件，且不超过500kb</div>
+          </el-upload>
         </el-main>
       </el-container>
     </el-container>
@@ -26,13 +39,18 @@ export default {
   // components: { MarkdownEditor },
   data () {
     return {
-      content: ''
+      content: '',
+      actionUrl: 'http://localhost:8080/file',
+      headers: {}
     }
   },
   mounted () {
     getUserInfo().then(res => {
       console.log(res)
       Message.success('hello, ' + res.data.username)
+
+      const token = localStorage.getItem('token')
+      this.headers['Authorization'] = 'Bearer ' + token
     }).catch(err => {
       Message.error(err.message)
       this.$router.push('/login')
