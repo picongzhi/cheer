@@ -1,10 +1,13 @@
 package com.pcz.cheer.config;
 
 import io.minio.MinioClient;
+import io.minio.policy.PolicyType;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+
+import java.util.Map;
 
 /**
  * @author picongzhi
@@ -41,6 +44,10 @@ public class MinioConfig {
                 minioClient.makeBucket(bucket);
                 log.info("create bucket");
             }
+
+            // 设置连接可永久访问
+            minioClient.setBucketPolicy(bucket, "**", PolicyType.READ_ONLY);
+            log.info("set bucket policy");
 
             return minioClient;
         } catch (Exception e) {

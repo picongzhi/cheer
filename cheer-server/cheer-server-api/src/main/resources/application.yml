@@ -58,7 +58,7 @@ pagehelper:
   helper-dialect: mysql
   #  reasonable: true
   params: count=countSql
-debug: true
+debug: false
 jwt:
   config:
     key: cheer

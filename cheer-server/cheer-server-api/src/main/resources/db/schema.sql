@@ -5,6 +5,7 @@ CREATE TABLE `user`
   `username`    VARCHAR(64) NOT NULL UNIQUE COMMENT '用户名',
   `password`    VARCHAR(64) NOT NULL COMMENT '加密后的密码',
   `email`       VARCHAR(64) NOT NULL UNIQUE COMMENT '邮箱',
+  `avatar`      VARCHAR(256) COMMENT '头像',
   `status`      INT(2)      NOT NULL DEFAULT '1' COMMENT '状态，启用-1，禁用-0',
   `create_time` DATETIME    NOT NULL DEFAULT NOW() COMMENT '创建时间',
   `update_time` DATETIME    NOT NULL DEFAULT NOW() COMMENT '上次更新时间'

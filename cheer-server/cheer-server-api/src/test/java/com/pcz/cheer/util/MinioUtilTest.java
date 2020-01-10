@@ -26,7 +26,7 @@ public class MinioUtilTest extends ApplicationTest {
 
     @Test
     public void getFileContentTypeTest() throws Exception {
-        String objectName = "a11d8e9e-2ffd-470c-b9d3-2e4190a6fb30";
+        String objectName = "e96a22aa-f7d3-4c23-a0fa-294dc0577178";
         String contentType = minioUtil.getFileContentType(minioConfig.getBucket(), objectName);
         log.info("content type: {}", contentType);
     }

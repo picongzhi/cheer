@@ -2,7 +2,6 @@ package com.pcz.cheer.util;
 
 import com.pcz.cheer.config.MinioConfig;
 import io.minio.MinioClient;
-import io.minio.ObjectStat;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -30,8 +29,9 @@ public class MinioUtil {
      * @param contentType 文件类型
      * @throws Exception Exception
      */
-    public void saveFile(String bucketName, String objectName, InputStream inputStream, long size, String contentType) throws Exception {
+    public String saveFile(String bucketName, String objectName, InputStream inputStream, long size, String contentType) throws Exception {
         minioClient.putObject(bucketName, objectName, inputStream, size, contentType);
+        return minioClient.getObjectUrl(bucketName, objectName);
     }
 
     /**
@@ -56,17 +56,5 @@ public class MinioUtil {
      */
     public String getFileContentType(String bucketName, String objectName) throws Exception {
         return minioClient.statObject(bucketName, objectName).contentType();
-    }
-
-    /**
-     * 获取文件url地址
-     *
-     * @param bucketName bucket名
-     * @param objectName 对象名
-     * @return url
-     * @throws Exception Exception
-     */
-    public String getFileUrl(String bucketName, String objectName) throws Exception {
-        return minioClient.getObjectUrl(bucketName, objectName);
     }
 }

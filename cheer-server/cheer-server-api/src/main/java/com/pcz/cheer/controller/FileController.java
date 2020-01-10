@@ -19,7 +19,6 @@ public class FileController {
 
     @PostMapping
     public ApiResponse upload(MultipartFile file) throws Exception {
-        fileService.save(file.getInputStream(), file.getSize(), file.getContentType());
-        return ApiResponse.ofSuccess("上传成功");
+        return ApiResponse.ofSuccess(fileService.save(file.getInputStream(), file.getSize(), file.getContentType()));
     }
 }
