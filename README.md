@@ -26,6 +26,9 @@
 ### 依赖存储
  - MySQL 
  - Redis 安装: docker run -d -p 6379:6379 redis redis-server --appendonly yes
+ - Minio 
+   - 安装: docker pull minio/minio
+   - 运行: docker run -p 9000:9000 --name minio -d --restart=always -e "MINIO_ACCESS_KEY=admin" -e "MINIO_SECRET_KEY=admin123456" -v ~/workspace/docker/minio/data:/data -v ~/workspace/docker/minio/config:/root/.minio minio/minio server /data
 
 ## 运行
 
