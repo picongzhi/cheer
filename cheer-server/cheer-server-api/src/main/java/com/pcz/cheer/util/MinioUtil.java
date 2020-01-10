@@ -57,4 +57,16 @@ public class MinioUtil {
     public String getFileContentType(String bucketName, String objectName) throws Exception {
         return minioClient.statObject(bucketName, objectName).contentType();
     }
+
+    /**
+     * 获取文件url地址
+     *
+     * @param bucketName bucket名
+     * @param objectName 对象名
+     * @return url
+     * @throws Exception Exception
+     */
+    public String getFileUrl(String bucketName, String objectName) throws Exception {
+        return minioClient.getObjectUrl(bucketName, objectName);
+    }
 }
