@@ -21,7 +21,7 @@
         <io.spring.platform.version>Cairo-SR8</io.spring.platform.version>
         <spring.cloud.version>Greenwich.SR3</spring.cloud.version>
         <spring.boot.version>2.1.0.RELEASE</spring.boot.version>
-        <mysql.version>8.0.17</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <mybatis.mapper.version>2.0.4</mybatis.mapper.version>
         <mybatis.pagehelper.version>1.2.13</mybatis.pagehelper.version>
         <hutool.version>5.0.0</hutool.version>
